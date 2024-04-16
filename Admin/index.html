@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 10px;
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="time"],
+        textarea {
+            margin-bottom: 20px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin</h1>
+        <form id="loginForm">
+            <h2>Login</h2>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <form id="addRoomForm" style="display: none;">
+            <h2>Add Room</h2>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" required>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+            <button type="submit">Add Room</button>
+        </form>
+
+        <div id="bookingsSection" style="display: none;">
+            <h2>All Bookings</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Description</th>
+                        <!-- Add more columns as needed -->
+                    </tr>
+                </thead>
+                <tbody id="bookingsTableBody">
+                    <!-- Bookings will be populated dynamically here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="statisticsSection" style="display: none;">
+            <h2>Statistics</h2>
+            <p>Total Rooms: <span id="totalRooms"></span></p>
+            <p>Total Bookings: <span id="totalBookings"></span></p>
+            <p>Available Rooms: <span id="availableRooms"></span></p>
+        </div>
+
+        <div id="usersSection" style="display: none;">
+            <h2>List of Users</h2>
+            <ul id="userList">
+                <!-- Users will be populated dynamically here -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Simulate login functionality
+            // Display other sections after successful login
+            document.getElementById('addRoomForm').style.display = 'block';
+            document.getElementById('bookingsSection').style.display = 'block';
+            document.getElementById('statisticsSection').style.display = 'block';
+            document.getElementById('usersSection').style.display = 'block';
+        });
+
+        document.getElementById('addRoomForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Simulate adding room functionality
+            // Refresh room list or display success message
+        });
+
+        // Simulate fetching and displaying bookings, statistics, and user list
+        // You can replace this with actual API calls
+        document.addEventListener('DOMContentLoaded', function() {
+            // Simulate displaying bookings
+            const bookings = [
+                { date: '2024-04-20', time: '09:00', description: 'Meeting with clients' },
+                { date: '2024-04-21', time: '10:00', description: 'Training session' },
+                // Add more bookings as needed
+            ];
+            const bookingsTableBody = document.getElementById('bookingsTableBody');
+            bookings.forEach(booking => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${booking.date}</td>
+                    <td>${booking.time}</td>
+                    <td>${booking.description}</td>
+                    <!-- Add more cells for additional columns -->
+                `;
+                bookingsTableBody.appendChild(row);
+            });
+
+            // Simulate displaying statistics
+            document.getElementById('totalRooms').textContent = '10';
+            document.getElementById('totalBookings').textContent = '5';
+            document.getElementById('availableRooms').textContent = '5';
+
+            // Simulate displaying user list
+            const users = ['User1', 'User2', 'User3']; // Replace with actual user list
+            const userList = document.getElementById('userList');
+            users.forEach(user => {
+                const listItem = document.createElement('li');
+                listItem.textContent = user;
+                userList.appendChild(listItem);
+            });
+        });
+    </script>
+</body>
+</html>
